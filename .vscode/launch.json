@@ -14,12 +14,12 @@
             "runtimeArgs": [
                 "./app",
                 "--enable-logging",
-                "--dev"
+                "--dev",
             ],
             "env": {
                 "NODE_ENV": "development"
             },
-            "console": "internalConsole",
+            "console": "integratedTerminal",
             "sourceMaps": true,
             "outDir": null
         },
