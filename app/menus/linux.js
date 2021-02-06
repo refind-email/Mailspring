@@ -208,6 +208,20 @@ module.exports = {
       ],
     },
     {
+      id: 'Refind',
+      label: localized('Refind'),
+      submenu: [
+        { label: localized('Sign-in'), command: '' },
+        { label: localized('Select Environment'), command: '' , enabled: true},
+        { type: 'separator' },
+        { label: localized('Dashboard'), command: '', enabled: false },
+        { label: localized('Recipes'), command: '',enabled: false },
+        { label: localized('Groups'), command: '',enabled: false },
+        { type: 'separator' },
+        { label: localized('Quit'), command: 'application:quit' },
+      ],
+    },
+    {
       id: 'Help',
       label: localized('Help'),
       submenu: [
