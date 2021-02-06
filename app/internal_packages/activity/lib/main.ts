@@ -32,9 +32,23 @@ const AccountSidebarExtension = {
   },
 };
 
+const RefindidebarExtension = {
+  name: 'ReFind',
+
+  sidebarItem(accountIds) {
+    return {
+      id: 'ReFind',
+      name: localized('ReFind'),
+      iconName: 'activity.png',
+      perspective: new ActivityMailboxPerspective(accountIds),
+    };
+  },
+};
+
 export function activate() {
   // summary view
   ExtensionRegistry.AccountSidebar.register(AccountSidebarExtension);
+  ExtensionRegistry.AccountSidebar.register(RefindidebarExtension);
 
   WorkspaceStore.defineSheet(
     'Activity',
@@ -42,6 +56,11 @@ export function activate() {
     { list: ['RootSidebar', 'ActivityContent'] }
   );
 
+  WorkspaceStore.defineSheet(
+    'ReFind',
+    { root: true },
+    { list: ['RootSidebar', 'ActivityContent'] }
+  );
   ComponentRegistry.register(Root, {
     location: WorkspaceStore.Location.ActivityContent,
   });
@@ -53,6 +72,7 @@ export function activate() {
   ) {
     Actions.selectRootSheet(WorkspaceStore.Sheet.Activity);
   }
+
 
   // list view in top left
   ComponentRegistry.register(ActivityListButtonWithTutorialTip, {

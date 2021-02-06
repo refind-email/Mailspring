@@ -208,15 +208,16 @@ module.exports = {
       ],
     },
     {
+      // Refind - added Dropdown
       id: 'Refind',
       label: localized('Refind'),
       submenu: [
-        { label: localized('Sign-in'), command: '' },
-        { label: localized('Select Environment'), command: '' , enabled: true},
+        { label: localized('Sign-in'), command: 'application:openDashboard', enabled: true },
+        { label: localized('Select Environment'), command: 'application:new-message' , enabled: true},
         { type: 'separator' },
-        { label: localized('Dashboard'), command: '', enabled: false },
-        { label: localized('Recipes'), command: '',enabled: false },
-        { label: localized('Groups'), command: '',enabled: false },
+        { label: localized('Dashboard'), command: 'application:openDashboard', enabled: true },
+        { label: localized('Recipes'), command: 'application:openRecipe',enabled: false },
+        { label: localized('Groups'), command: 'application:openGroups',enabled: false },
         { type: 'separator' },
         { label: localized('Quit'), command: 'application:quit' },
       ],

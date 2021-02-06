@@ -232,7 +232,7 @@ export default class Application extends EventEmitter {
   // we close windows and log out, we need to wait for these processes to completely
   // exit and then delete the file. It's hard to tell when this happens, so we just
   // retry the deletion a few times.
-  deleteFileWithRetry(filePath, callback = () => {}, retries = 5) {
+  deleteFileWithRetry(filePath, callback = () => { }, retries = 5) {
     const callbackWithRetry = err => {
       if (err && err.message.indexOf('no such file') === -1) {
         console.log(`File Error: ${err.message} - retrying in 150msec`);
@@ -396,6 +396,7 @@ export default class Application extends EventEmitter {
       }
     });
 
+
     this.on('application:view-help', () => {
       const helpUrl = 'http://support.getmailspring.com/hc/en-us';
       shell.openExternal(helpUrl);
@@ -446,8 +447,23 @@ export default class Application extends EventEmitter {
     });
 
     this.on('application:view-license', () => {
+
       shell.openItem(path.join(this.resourcePath, 'static', 'all_licenses.html'));
     });
+
+    // Refind - Added Menus handlers
+    this.on('application:openDashboard', () => {
+      shell.openExternal("http://www.refind.email");
+    });
+    this.on('application:openGroups', () => {
+      shell.openExternal("http://www.refind.email");
+    });
+    this.on('application:openRecipes', () => {
+      shell.openExternal("http://www.refind.email");
+    });
+
+
+
 
     if (process.platform === 'darwin') {
       this.on('application:about', () => {
@@ -864,4 +880,5 @@ export default class Application extends EventEmitter {
 
     this.windowManager.ensureWindow(WindowManager.SPEC_WINDOW, specWindowOptions);
   }
+
 }
