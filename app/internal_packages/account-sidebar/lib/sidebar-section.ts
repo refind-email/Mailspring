@@ -83,6 +83,8 @@ class SidebarSection {
     };
   }
 
+
+
   static standardSectionForAccounts(accounts?: Account[]): ISidebarSection {
     let children;
     if (!accounts || accounts.length === 0) {
@@ -131,8 +133,16 @@ class SidebarSection {
         SidebarItem.forCategories(categories, { children, editable: false, deletable: false })
       );
     }
-
     const accountIds = _.pluck(accounts, 'id');
+    const recipeNames = [
+      'By TimeFrame',
+      'By AddressBook'
+    ];
+
+
+    const recipeList = SidebarItem.forRecipe(accountIds, {
+      children: recipeNames.map(acc => SidebarItem.forRecipe([1], { name: acc })),
+    });
 
     const starredItem = SidebarItem.forStarred(accountIds, {
       children: accounts.map(acc => SidebarItem.forStarred([acc.id], { name: acc.label })),
@@ -146,6 +156,7 @@ class SidebarSection {
 
     // Order correctly: Inbox, Unread, Starred, rest... , Drafts
     items.splice(1, 0, unreadItem, starredItem);
+    //    items.push(vitems);
     items.push(draftsItem);
 
     ExtensionRegistry.AccountSidebar.extensions()
@@ -194,7 +205,11 @@ class SidebarSection {
     //
     const items = [];
     const seenItems = {};
-    for (const category of CategoryStore.userCategories(account)) {
+    let clist = CategoryStore.userCategories(account)
+    // for (const x of clist) {
+    //   console.log(x.displayName);
+    // }
+    for (const category of clist) {
       // https://regex101.com/r/jK8cC2/1
       let item, parentKey;
       const re = RegExpUtils.subcategorySplitRegex();

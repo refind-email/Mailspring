@@ -41,6 +41,7 @@ export class SyncActivity extends React.Component<SyncActivityProps> {
   }
 
   render() {
+    // Displays that native folders or labeles associated with each mail account.  Click on Scanning first
     let accountComponents: JSX.Element[] | JSX.Element = Object.entries(this.props.syncState).map(
       ([accountId, accountSyncState]) => {
         const account = AccountStore.accountForId(accountId);
@@ -60,6 +61,7 @@ export class SyncActivity extends React.Component<SyncActivityProps> {
 
         return (
           <div className="account" key={accountId}>
+            <h2>aaaaaaaaaaaaaaaa</h2>
             <h2>{account.emailAddress}</h2>
             {folderComponents}
           </div>

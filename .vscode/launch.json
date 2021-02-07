@@ -21,7 +21,10 @@
             },
             "console": "integratedTerminal",
             "sourceMaps": true,
-            "outDir": null
+            "smartStep": true,
+            "outFiles": [
+                "${workspaceFolder}/out/**/*.js"
+            ],
         },
         {
             "name": "Attach",
@@ -31,7 +34,6 @@
             "address": "localhost",
             "restart": false,
             "sourceMaps": false,
-            "outDir": null,
             "localRoot": "${workspaceRoot}",
             "remoteRoot": null
         },
@@ -42,7 +44,6 @@
             "processId": "${command.PickProcess}",
             "port": 5858,
             "sourceMaps": false,
-            "outDir": null
         }
     ]
 }

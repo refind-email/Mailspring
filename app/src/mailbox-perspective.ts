@@ -37,6 +37,12 @@ export class MailboxPerspective {
     return new EmptyMailboxPerspective();
   }
 
+  static forRecipe(accountsOrIds) {
+    return new RecipeMailboxPerspective(accountsOrIds);
+  }
+
+
+
   static forDrafts(accountsOrIds) {
     return new DraftsMailboxPerspective(accountsOrIds);
   }
@@ -243,6 +249,35 @@ export class MailboxPerspective {
       throw new Error('tasksForRemovingItems: you must pass an array of threads or thread ids');
     }
     return [];
+  }
+}
+
+class RecipeMailboxPerspective extends MailboxPerspective {
+  name = localized('Venue');
+  iconName = 'drafts.png';
+  drafts = true; // The DraftListStore looks for this
+
+  threads() {
+    return null;
+  }
+
+  unreadCount() {
+    let count = 0;
+    // for (const aid of this.accountIds) {
+    //   count += OutboxStore.itemsForAccount(aid).length;
+    // }
+    return count;
+  }
+
+  canReceiveThreadsFromAccountIds() {
+    return false;
+  }
+
+  sheet() {
+    if (!WorkspaceStore || !WorkspaceStore.Sheet) {
+      WorkspaceStore = require('./flux/stores/workspace-store').default;
+    }
+    return WorkspaceStore.Sheet && WorkspaceStore.Sheet.Drafts;
   }
 }
 

@@ -10,6 +10,7 @@
     "lib": ["es2017", "dom", "esnext.array"],
     "removeComments": true,
     "resolveJsonModule": true,
+    "sourceMap": true,
     "inlineSourceMap": true,
     "outDir": "lib",
     "baseUrl": ".",
